@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?Defina DB_PASSWORD no arquivo .env}
+    volumes:
+      - sql-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q 'SELECT 1' -b -o /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Database: Server=db;Database=OrderManagement;User Id=sa;Password=${DB_PASSWORD};TrustServerCertificate=true
+      Jwt__Key: ${JWT_KEY:?Defina JWT_KEY no arquivo .env}
+      Bootstrap__AdminEmail: ${ADMIN_EMAIL:?Defina ADMIN_EMAIL no arquivo .env}
+      Bootstrap__AdminPassword: ${ADMIN_PASSWORD:?Defina ADMIN_PASSWORD no arquivo .env}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+volumes:
+  sql-data:

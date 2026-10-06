@@ -1,0 +1,11 @@
+﻿Validacao Docker: 2026-09-24T18:05:02.1564194-03:00
+Pedido: dd2e5a8c-8170-421e-97d6-2d7c7b34ce65
+Total: 399.80
+Status: Criado
+Status: Pago
+Status: EmPreparo
+Status: Enviado
+Status: Entregue
+Relatorio concluido pelo Hangfire: ac2fa433-a2ba-492d-8d85-bf40c21693b3
+Receita acumulada: 399.80
+Fluxo HTTP com SQL Server e relatorio Hangfire: APROVADO

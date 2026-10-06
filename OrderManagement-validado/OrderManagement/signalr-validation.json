@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-09-24T21:06:32.351Z",
+  "health": "ok",
+  "transport": "WebSocket",
+  "orderId": "132524c5-6277-437d-acbd-604b4458ff7f",
+  "eventId": "d87bd64f-2d3c-463e-9b2d-88a29142ea38",
+  "ownerReceived": true,
+  "adminReceived": true,
+  "unrelatedCustomerReceived": false,
+  "anonymousHubStatus": 401,
+  "unrelatedOrderStatus": 404,
+  "result": "PASS"
+}
